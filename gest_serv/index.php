@@ -63,11 +63,11 @@ if(isset($_GET['t'])){}else{
             <a><br /></a>
             <a href="<?php echo $settings_php_page; ?>"><i class="fa fa-home"></i> Accueil</a>
             <gca>Mon Compte</gca>
-            <a href="myuser.php"><i class="fa fa-user"></i> Mon Compte</a>
+            <a href="../myuser.php"><i class="fa fa-user"></i> Mon Compte</a>
             <?php 
             if($donnees['admin'] == true)
             {
-                ?><a href="admin/"><i class="fa fa-gears"></i> Administration</a>
+                ?><a href="../admin/"><i class="fa fa-gears"></i> Administration</a>
                 <?php
             }
             ?>
@@ -167,7 +167,7 @@ if(isset($_GET['t'])){}else{
                             
                         </table>
                         <div class="form-gest-server-console">
-                            <iframe src="http://<?php echo $donnees4['adress']; ?>:8080/daemon?apikey=<?php echo $donnees4['apikey']; ?>&cmd=console.server&args1=testserv1"></iframe>
+                            <iframe src="http://<?php echo $donnees4['adress']; ?>:<?php echo $donnees4['port']; ?>/daemon?apikey=<?php echo $donnees4['apikey']; ?>&cmd=console.server&args1=testserv1"></iframe>
                         </div>
                         <div class="form-gest-server-btn">
                             <a class="button-start-disable" href="act.php?id=<?php echo $_GET['id'] . "&act=1"; ?>" target="_blank"><i class="fa fa-play"></i> Démarrer le serveur</a>

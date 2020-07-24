@@ -73,31 +73,22 @@ if(isset($_SESSION['is_connected']))
                     {
                         ?>
                     <tr><td>
-                        <?php
-                            //$json=file_get_contents("http://localhost:8080/daemon");
-                        $json="";
-                            $obj = json_decode($json);
-                            if(isset($obj->{'message'}))
-                            {
-                                //print $obj->{'message'}; // 12345
-                                if($obj->{'message'} == "apikey non valable")
-                                {
-                                    echo '<i style="color: green;" class="fa fa-heartbeat"></i>';
-                                }else{
-                                    echo '<i style="color: red;" class="fa fa-heart-o"></i>';
-                                }
-
-                            }else{
-                                echo '<i style="color: red;" class="fa fa-heart-o"></i>';
-                            }
-                            
-                        
+                    <?php  
+$host = $donnees2['adress']; 
+$port = $donnees2['port'];
+$waitTimeoutInSeconds = 1; 
+if($fp = fsockopen($host,$port,$errCode,$errStr,$waitTimeoutInSeconds)){   
+   echo '<i style="color: green;" class="fa fa-heartbeat"></i>';
+} else {
+   echo '<i style="color: red;" class="fa fa-heart-o"></i>';
+} 
+fclose($fp);
                         ?>
                         </td>
-                        <td><?php echo $donnees2['name']; ?></td>
-                        <td><?php echo $donnees2['ram_max']; ?>MB</td>
-                        <td><?php echo $donnees2['disk']; ?>Mo</td>
-                        <td><?php
+                        <td><a style="color: black;" href="../../gest_serv/?id=<?php echo $donnees2['id']; ?>"><?php echo $donnees2['name']; ?></a></td>
+                        <td><a style="color: black;" href="../../gest_serv/?id=<?php echo $donnees2['id']; ?>"><?php echo $donnees2['ram_max']; ?>MB</a></td>
+                        <td><a style="color: black;" href="../../gest_serv/?id=<?php echo $donnees2['id']; ?>"><?php echo $donnees2['disk']; ?>Mo</a></td>
+                        <td><a style="color: black;" href="../../gest_serv/?id=<?php echo $donnees2['id']; ?>"><?php
                         $variable_totalement_pas_utile = 0;
                         while($donnees3 = $reponse3->fetch())
                         {
@@ -107,7 +98,7 @@ if(isset($_SESSION['is_connected']))
                             }
                         }
                         echo $variable_totalement_pas_utile;
-                        ?></td>
+                        ?></a></td>
                         <td><?php if($donnees2['ssl'] == "true"){echo '<i style="color:green;" class="fa fa-lock"></i>'; }else{echo '<i style="color:red;" class="fa fa-unlock"></i>';}?></td>
                         
                     </tr>

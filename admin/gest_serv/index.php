@@ -76,9 +76,10 @@ if(isset($_SESSION['is_connected']))
                     <tr>
                         <td>
                         <?php
-                            
-$host = '127.0.0.1'; 
-$port = 25565; 
+$reponse23 = $bdd->query("SELECT * FROM node WHERE id='" . $donnees2['server_location'] . "'");
+$donnees23 = $reponse23->fetch();        
+$host = $donnees23['adress']; 
+$port = $donnees2['adressip'];
 $waitTimeoutInSeconds = 1; 
 if($fp = fsockopen($host,$port,$errCode,$errStr,$waitTimeoutInSeconds)){   
    echo '<i style="color: green;" class="fa fa-heartbeat"></i>';
